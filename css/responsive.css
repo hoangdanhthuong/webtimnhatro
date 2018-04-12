@@ -1,0 +1,75 @@
+@media  screen and (max-width: 769px) {
+	#search-box .row .search-4 {
+		display: inline-block;
+		width: 33%;
+		float: left;
+	}
+	.right-item {
+		width: 33.33%;
+		float: left;
+		border-bottom: none;
+	}
+	.img-right {
+		display: none;
+	}
+	.ft-item {
+		padding: 0;
+		width: calc(100%/3);
+		float: left;
+	}
+}
+@media  screen and (max-width: 420px) {
+	#search-box .row .first {
+		display: block;
+		width: 100%;
+	}
+	#search-box .row .second {
+		width: 50%;
+	}
+	.list-item {
+		width: 50%;
+		padding: 5px 5px;
+	}
+	#right-content {
+		padding-left: 5px;
+		padding-right: 5px;
+	}
+	.right-item {
+		padding-left: 5px;
+	}
+	#room,#hotel {
+		padding: 0 5px;
+	}
+	.list-item span {
+		font-size: 10px;
+	}
+	.ft-item {
+		padding: 0;
+		width: 100%;
+		padding: 15px 30px;
+	}
+	.item-price {
+		padding: 0;
+		top: 5px;
+		right: 5px;
+	}
+}
+/*dang ky*/
+/* Responsive: Portrait tablets and up */
+@media screen and (min-width: 768px) {
+  /* Remove the padding we set earlier */
+  .header,
+  .marketing,
+  .footer {
+    padding-right: 0;
+    padding-left: 0;
+  }
+  /* Space out the masthead */
+  .header {
+    margin-bottom: 30px;
+  }
+  /* Remove the bottom border on the jumbotron for visual effect */
+  .jumbotron {
+    border-bottom: 0;
+  }
+}
