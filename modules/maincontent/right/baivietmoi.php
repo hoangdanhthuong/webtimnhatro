@@ -14,6 +14,6 @@
 		<img src="images/1_facade_5.jpg">
 		<a href=""><p class="right-text-head">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p></a>
 	</div>
-	<img class="img-right" src="images/ads1.png" width="50%">
-	<img class="img-right" src="images/ads-3-min.png" width="50%">
+	<img class="img-right" src="images/qc01.png" width="100%">
+	<img class="img-right" src="images/qc02.png" width="100%">
 </div>

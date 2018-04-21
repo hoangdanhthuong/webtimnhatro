@@ -1,76 +1,42 @@
-<script>
-      var customLabel = {
-        restaurant: {
-          label: 'R'
-        },
-        bar: {
-          label: 'B'
-        }
-      };
+$(document).on('click','#btn-login-user', function(){
+	var email = $('#inputEmail').val();
+	var password = $('#inputPassword').val();
+	$('#error_login').text('');
+	$("#error_email_login").text("");
+	$("#error_password_login").text("");
+	email = $.trim(email);
+	password = $.trim(password);
 
-        function initMap() {
-        var map = new google.maps.Map(document.getElementById('map'), {
-          center: new google.maps.LatLng(18.658921, 105.6933539),
-          zoom: 12
-        });
-        var infoWindow = new google.maps.InfoWindow;
+	if(email.length >0 && password.length>0){
+		$.ajax({
+			url:'modules/xuly/process_login.php',
+			method: 'POST',
+			data:{email: email,password: password},
+			cache: false,
+			beforeSend:function(){
+				$('#btn-login-user').text('Đang xử lý..');
+			},
+			success:function(data){
+				if(data){
+					alert("Đăng nhập thành công! "+data);
+					$('#btn-login-user').text('Đăng nhập');
+					window.location='index.php';
+				}else{
+					$('#error_login').text('Đăng nhập lỗi').css('color','red');
+					return false;
+				}
+			}
+		});
 
-          // Change this depending on the name of your PHP or XML file
-          downloadUrl('https://storage.googleapis.com/mapsdevsite/json/mapmarkers2.xml', function(data) {
-            var xml = data.responseXML;
-            var markers = xml.documentElement.getElementsByTagName('marker');
-            Array.prototype.forEach.call(markers, function(markerElem) {
-              var id = markerElem.getAttribute('id');
-              var name = markerElem.getAttribute('name');
-              var address = markerElem.getAttribute('address');
-              var type = markerElem.getAttribute('type');
-              var point = new google.maps.LatLng(
-                  parseFloat(markerElem.getAttribute('lat')),
-                  parseFloat(markerElem.getAttribute('lng')));
+	}else{
+		if(email ==""){
+			$("#error_email_login").text("Email bị lỗi").css("color","red");
 
-              var infowincontent = document.createElement('div');
-              var strong = document.createElement('strong');
-              strong.textContent = name
-              infowincontent.appendChild(strong);
-              infowincontent.appendChild(document.createElement('br'));
+		}
+		if(password ==""){
+			$("#error_password_login").text("Mật khẩu bị lỗi").css("color","red");
+		}
+		return false;
+	}
 
-              var text = document.createElement('text');
-              text.textContent = address
-              infowincontent.appendChild(text);
-              var icon = customLabel[type] || {};
-              var marker = new google.maps.Marker({
-                map: map,
-                position: point,
-                label: icon.label
-              });
-              marker.addListener('click', function() {
-                infoWindow.setContent(infowincontent);
-                infoWindow.open(map, marker);
-              });
-            });
-          });
-        }
-
-
-
-      function downloadUrl(url, callback) {
-        var request = window.ActiveXObject ?
-            new ActiveXObject('Microsoft.XMLHTTP') :
-            new XMLHttpRequest;
-
-        request.onreadystatechange = function() {
-          if (request.readyState == 4) {
-            request.onreadystatechange = doNothing;
-            callback(request, request.status);
-          }
-        };
-
-        request.open('GET', url, true);
-        request.send(null);
-      }
-
-      function doNothing() {}
-    </script>
-    <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCSIIRDp0PHwrkHw8pBw1Kzrn3Nj2BjUS4&callback=initMap">
-    </script>
+});

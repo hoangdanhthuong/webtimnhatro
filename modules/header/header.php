@@ -1,3 +1,4 @@
+
 <div id="header">
 	<div class="container">
 		<div class="row">
@@ -8,8 +9,14 @@
 				</div>
 				<div id="head-right">
 					<a href="index.php?xem=dangtin">Đăng tin miễn phí</a>
+					<?php
+						if(!isset($_SESSION['email_web_nha_tro'])){
+					?>
 					<a href="index.php?xem=dangnhap">Đăng nhập</a>
 					<a href="index.php?xem=dangky">Đăng ký</a>
+					<?php
+						}
+					?>
 					<a href="index.php?xem=trogiup">Trợ giúp</a>
 				</div>
 			</div>
